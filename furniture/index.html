@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Furniture — Reel Estate</title>
+
+<style>
+:root {
+  --sky: #8fd3e8;
+  --sky-light: #dff5fa;
+  --eggshell: #f8f5ec;
+  --white: #ffffff;
+  --royal: #1746b8;
+  --royal-dark: #10358e;
+  --ink: #102033;
+  --muted: #687384;
+  --line: rgba(16,32,51,.14);
+  --radius: 24px;
+  --max: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--eggshell);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(var(--max), calc(100% - 40px));
+  margin: auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+
+.logo span {
+  color: var(--royal);
+}
+
+/* =========================
+   FLOATING MENU
+========================= */
+
+.floating-menu {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 1000;
+}
+
+.menu-toggle {
+  width: 58px;
+  height: 58px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--royal);
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  box-shadow:
+    0 15px 35px rgba(23,70,184,.28);
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.05);
+  background: var(--royal-dark);
+}
+
+.menu-items {
+  position: absolute;
+
+  right: 0;
+  bottom: 72px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateY(15px);
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease;
+}
+
+.floating-menu.open .menu-items {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.menu-item {
+  white-space: nowrap;
+
+  padding: 11px 17px;
+
+  border-radius: 999px;
+
+  background: var(--white);
+
+  border: 1px solid var(--line);
+
+  box-shadow:
+    0 8px 25px rgba(16,32,51,.12);
+
+  color: var(--ink);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.menu-item:hover {
+  background: var(--royal);
+  color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 72vh;
+
+  display: flex;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--sky-light),
+      var(--sky)
+    );
+}
+
+.hero-content {
+  padding: 90px 0;
+}
+
+.eyebrow {
+  color: var(--royal);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin-top: 22px;
+
+  max-width: 950px;
+
+  font-size: clamp(65px, 12vw, 150px);
+
+  line-height: .8;
+
+  letter-spacing: -9px;
+
+  font-weight: 900;
+}
+
+.hero h1 span {
+  color: var(--royal);
+}
+
+.hero-copy {
+  max-width: 570px;
+
+  margin-top: 40px;
+
+  color: #31566a;
+
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+/* =========================
+   FURNITURE COLLECTION
+========================= */
+
+.collection {
+  padding: 100px 0;
+}
+
+.collection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  gap: 40px;
+
+  margin-bottom: 55px;
+}
+
+.collection-title {
+  margin-top: 18px;
+
+  font-size: clamp(42px, 7vw, 80px);
+
+  line-height: .9;
+
+  letter-spacing: -5px;
+}
+
+.collection-copy {
+  max-width: 430px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================
+   FURNITURE CARDS
+========================= */
+
+.furniture-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 16px;
+}
+
+.furniture-card {
+  min-height: 360px;
+
+  padding: 27px;
+
+  background: var(--white);
+
+  border: 1px solid var(--line);
+
+  border-radius: var(--radius);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.furniture-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 25px 55px rgba(16,32,51,.12);
+}
+
+.furniture-number {
+  color: var(--royal);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.furniture-shape {
+  height: 125px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shape {
+  position: relative;
+
+  background: var(--sky);
+
+  border: 2px solid var(--royal);
+}
+
+/* Abstract furniture placeholders */
+
+.sofa {
+  width: 190px;
+  height: 75px;
+  border-radius: 18px 18px 10px 10px;
+}
+
+.sofa::before,
+.sofa::after {
+  content: "";
+
+  position: absolute;
+
+  width: 25px;
+  height: 65px;
+
+  bottom: -10px;
+
+  background: var(--royal);
+
+  border-radius: 6px;
+}
+
+.sofa::before {
+  left: 12px;
+}
+
+.sofa::after {
+  right: 12px;
+}
+
+.table {
+  width: 160px;
+  height: 20px;
+
+  border-radius: 999px;
+}
+
+.table::before,
+.table::after {
+  content: "";
+
+  position: absolute;
+
+  width: 12px;
+  height: 85px;
+
+  top: 15px;
+
+  background: var(--royal);
+}
+
+.table::before {
+  left: 25px;
+}
+
+.table::after {
+  right: 25px;
+}
+
+.chair {
+  width: 95px;
+  height: 120px;
+
+  border-radius: 30px 30px 12px 12px;
+}
+
+.chair::after {
+  content: "";
+
+  position: absolute;
+
+  width: 80px;
+  height: 12px;
+
+  left: 5px;
+  bottom: -22px;
+
+  background: var(--royal);
+
+  border-radius: 10px;
+}
+
+.furniture-info {
+  border-top: 1px solid var(--line);
+
+  padding-top: 18px;
+}
+
+.furniture-info h3 {
+  font-size: 25px;
+
+  letter-spacing: -1px;
+}
+
+.furniture-info p {
+  margin-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.furniture-link {
+  display: inline-block;
+
+  margin-top: 14px;
+
+  color: var(--royal);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   PARTNER CTA
+========================= */
+
+.partner {
+  padding: 110px 0;
+
+  background: var(--royal);
+
+  color: white;
+}
+
+.partner-inner {
+  display: flex;
+
+  align-items: end;
+  justify-content: space-between;
+
+  gap: 50px;
+}
+
+.partner h2 {
+  max-width: 750px;
+
+  font-size: clamp(48px, 8vw, 95px);
+
+  line-height: .85;
+
+  letter-spacing: -6px;
+}
+
+.partner h2 span {
+  color: var(--sky);
+}
+
+.partner p {
+  max-width: 390px;
+
+  color: rgba(255,255,255,.72);
+
+  line-height: 1.7;
+}
+
+.partner-button {
+  display: inline-flex;
+
+  margin-top: 25px;
+
+  padding: 14px 21px;
+
+  border-radius: 999px;
+
+  background: white;
+
+  color: var(--royal);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  padding: 45px 0 25px;
+}
+
+.footer-line {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.footer-small {
+  color: var(--muted);
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .container {
+    width: min(
+      var(--max),
+      calc(100% - 30px)
+    );
+  }
+
+  .hero h1 {
+    letter-spacing: -6px;
+  }
+
+  .collection-header {
+    display: block;
+  }
+
+  .collection-copy {
+    margin-top: 22px;
+  }
+
+  .furniture-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .furniture-card {
+    min-height: 330px;
+  }
+
+  .partner-inner {
+    display: block;
+  }
+
+  .partner p {
+    margin-top: 30px;
+  }
+
+  .footer-line {
+    display: block;
+  }
+
+  .footer-small + .footer-small {
+    margin-top: 10px;
+  }
+
+  .floating-menu {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="container header">
+
+  <a href="index.html" class="logo">
+    REEL <span>ESTATE</span>
+  </a>
+
+  <div class="eyebrow">
+    Furniture
+  </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+  <div class="container hero-content">
+
+    <div class="eyebrow">
+      The Furniture Collection
+    </div>
+
+    <h1>
+      FURNITURE
+      <span>FOR THE SPACE.</span>
+    </h1>
+
+    <p class="hero-copy">
+
+      A curated furniture destination
+      designed to complement the places
+      people live, work, gather, and grow.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     COLLECTION
+========================= -->
+
+<section class="collection" id="collection">
+
+  <div class="container">
+
+    <div class="collection-header">
+
+      <div>
+
+        <div class="eyebrow">
+          Explore
+        </div>
+
+        <h2 class="collection-title">
+          THE<br>
+          COLLECTION.
+        </h2>
+
+      </div>
+
+      <p class="collection-copy">
+
+        Furniture is coming to Reel Estate.
+        For now, explore the categories and
+        use the links below to visit the
+        furniture destination.
+
+      </p>
+
+    </div>
+
+
+    <div class="furniture-grid">
+
+
+      <!-- SOFAS -->
+
+      <article class="furniture-card">
+
+        <div class="furniture-number">
+          01 / SEATING
+        </div>
+
+        <div class="furniture-shape">
+
+          <div class="shape sofa"></div>
+
+        </div>
+
+        <div class="furniture-info">
+
+          <h3>
+            Sofas
+          </h3>
+
+          <p>
+            Seating designed to make a room
+            feel like home.
+          </p>
+
+          <!-- PLACEHOLDER LINK -->
+
+          <a
+            href="#"
+            class="furniture-link"
+            onclick="placeholderLink(event)"
+          >
+            Explore Sofas →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- TABLES -->
+
+      <article class="furniture-card">
+
+        <div class="furniture-number">
+          02 / SURFACES
+        </div>
+
+        <div class="furniture-shape">
+
+          <div class="shape table"></div>
+
+        </div>
+
+        <div class="furniture-info">
+
+          <h3>
+            Tables
+          </h3>
+
+          <p>
+            Dining, coffee, work, and gathering
+            spaces.
+          </p>
+
+          <!-- PLACEHOLDER LINK -->
+
+          <a
+            href="#"
+            class="furniture-link"
+            onclick="placeholderLink(event)"
+          >
+            Explore Tables →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- CHAIRS -->
+
+      <article class="furniture-card">
+
+        <div class="furniture-number">
+          03 / ACCENT
+        </div>
+
+        <div class="furniture-shape">
+
+          <div class="shape chair"></div>
+
+        </div>
+
+        <div class="furniture-info">
+
+          <h3>
+            Chairs
+          </h3>
+
+          <p>
+            Individual pieces that give a
+            room its personality.
+          </p>
+
+          <!-- PLACEHOLDER LINK -->
+
+          <a
+            href="#"
+            class="furniture-link"
+            onclick="placeholderLink(event)"
+          >
+            Explore Chairs →
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PARTNER CTA
+========================= -->
+
+<section class="partner">
+
+  <div class="container partner-inner">
+
+    <div>
+
+      <div class="eyebrow" style="color:var(--sky);">
+        Furniture
+      </div>
+
+      <h2 style="margin-top:22px;">
+
+        FURNISH
+        <span>
+          THE
+          POSSIBLE.
+        </span>
+
+      </h2>
+
+    </div>
+
+    <div>
+
+      <p>
+
+        Looking for furniture for a home,
+        office, development, or project?
+
+        The furniture marketplace is coming
+        soon.
+
+      </p>
+
+      <!-- PLACEHOLDER LINK -->
+
+      <a
+        href="#"
+        class="partner-button"
+        onclick="placeholderLink(event)"
+      >
+        Visit Furniture →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-line">
+
+      <div class="logo">
+        REEL <span>ESTATE</span>
+      </div>
+
+      <div class="footer-small">
+        Furniture
+      </div>
+
+    </div>
+
+    <div
+      class="footer-small"
+      style="margin-top:20px;"
+    >
+      Real property. Real stories.
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     FLOATING MENU
+========================= -->
+
+<div class="floating-menu" id="floatingMenu">
+
+  <div class="menu-items">
+
+    <a
+      href="index.html"
+      class="menu-item"
+    >
+      Reel Estate
+    </a>
+
+    <a
+      href="#collection"
+      class="menu-item"
+    >
+      Furniture
+    </a>
+
+    <!-- PLACEHOLDER -->
+
+    <a
+      href="#"
+      class="menu-item"
+      onclick="placeholderLink(event)"
+    >
+      Furniture Store
+    </a>
+
+    <a
+      href="#"
+      class="menu-item"
+      onclick="placeholderLink(event)"
+    >
+      Contact
+    </a>
+
+  </div>
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open menu"
+    aria-expanded="false"
+  >
+    +
+  </button>
+
+</div>
+
+
+<script>
+
+/* =========================
+   FLOATING MENU
+========================= */
+
+const floatingMenu =
+  document.getElementById("floatingMenu");
+
+const menuToggle =
+  document.getElementById("menuToggle");
+
+menuToggle.addEventListener("click", () => {
+
+  floatingMenu.classList.toggle("open");
+
+  const isOpen =
+    floatingMenu.classList.contains("open");
+
+  menuToggle.textContent =
+    isOpen ? "×" : "+";
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    isOpen
+  );
+
+});
+
+
+/* =========================
+   PLACEHOLDER LINKS
+========================= */
+
+function placeholderLink(event) {
+
+  event.preventDefault();
+
+  alert(
+    "Furniture destination coming soon."
+  );
+
+}
+
+</script>
+
+</body>
+</html>
